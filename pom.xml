@@ -4,12 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>processing-Particle-Automata</groupId>
 	<artifactId>processing-Particle-Automata</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<dependencies>
 		<dependency>
-			<groupId>processing-util</groupId>
-			<artifactId>processing-util</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<groupId>org.processing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.vecmath</groupId>
+			<artifactId>vecmath</artifactId>
+			<version>1.5.2</version>
 		</dependency>
 	</dependencies>
 	<build>
