@@ -1,0 +1,84 @@
+package pama1234.processing.autometa.particle.ui.page;
+
+import pama1234.processing.Entity;
+import pama1234.processing.util.app.UtilApp;
+
+public abstract class Page<T extends Entity>extends Entity{
+  public String name;
+  public T e;
+  public Page(UtilApp p,String name,T e) {
+    super(p);
+    this.name=name;
+    this.e=e;
+  }
+  @Override
+  public void create() {
+    e.create();
+  }
+  @Override
+  public void update() {
+    e.update();
+  }
+  @Override
+  public void display() {
+    e.display();
+  }
+  @Override
+  public void pause() {
+    e.pause();
+  }
+  @Override
+  public void resume() {
+    e.resume();
+  }
+  @Override
+  public void dispose() {
+    e.dispose();
+  }
+  @Override
+  public void mousePressed(int button) {
+    e.mousePressed(button);
+  }
+  @Override
+  public void mouseReleased(int button) {
+    e.mouseReleased(button);
+  }
+  @Override
+  public void mouseClicked(int button) {
+    e.mouseClicked(button);
+  }
+  @Override
+  public void mouseMoved() {
+    e.mouseMoved();
+  }
+  @Override
+  public void mouseDragged() {
+    e.mouseDragged();
+  }
+  @Override
+  public void mouseWheel(int c) {
+    e.mouseWheel(c);
+  }
+  @Override
+  public void keyPressed(char key,int keyCode) {
+    e.keyPressed(key,keyCode);
+  }
+  @Override
+  public void keyReleased(char key,int keyCode) {
+    e.keyReleased(key,keyCode);
+  }
+  @Override
+  public void keyTyped(char key) {
+    e.keyTyped(key);
+  }
+  @Override
+  public void frameResized(int w,int h) {
+    e.frameResized(w,h);
+  }
+  @Override
+  public void frameMoved(int x,int y) {
+    e.frameMoved(x,y);
+  }
+  public abstract void show();
+  public abstract void hide();
+}
