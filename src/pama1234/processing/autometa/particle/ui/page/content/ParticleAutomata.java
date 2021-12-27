@@ -2,7 +2,6 @@ package pama1234.processing.autometa.particle.ui.page.content;
 
 import java.util.ArrayList;
 
-import pama1234.processing.Entity;
 import pama1234.processing.autometa.particle.ui.Tab;
 import pama1234.processing.autometa.particle.ui.component.LoadAndSave;
 import pama1234.processing.autometa.particle.ui.component.Scoreboard;
@@ -13,6 +12,7 @@ import pama1234.processing.autometa.particle.util.CellCenter;
 import pama1234.processing.autometa.particle.util.MetaCell;
 import pama1234.processing.autometa.particle.util.MetaCellCenter;
 import pama1234.processing.autometa.particle.util.MetaInfo;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 import pama1234.processing.util.center.EntityCenter;
 import processing.core.PConstants;
@@ -24,6 +24,7 @@ public class ParticleAutomata extends EntityCenter<Entity>{
   public final Scoreboard scoreboard;
   public final MetaCellCenter metaList;
   public final CellCenter cellList;
+  // public final EntityCenter<TextBoard> componentCenter;
   public ParticleAutomata(UtilApp p) {
     super(p);
     MetaCell[] array;
@@ -31,15 +32,71 @@ public class ParticleAutomata extends EntityCenter<Entity>{
     tabs.list.add(new Tab<Entity>(p,"元信息",tabs.metaCenter=metaList=new MetaCellCenter(p,-480,-480,480,480)));
     Tab<Entity> tab=new Tab<Entity>(p,"地图",tabs.cellCenter=cellList=new CellCenter(p,metaList));
     tabs.list.add(tab);
+    //---
+    // componentCenter=new EntityCenter<>(p) {
+    // @Override
+    // public void display() {
+    //   if(Settings.data[0]==0) {
+    //     p.resetMatrix();
+    //     p.translate(p.width/2,p.height/2);
+    //   }
+    //   super.display();
+    // }
+    // @Override
+    // public void update() {
+    //   if(Settings.data[0]==0) {
+    //     float tx=p.cam.mouseX,
+    //       ty=p.cam.mouseX;
+    //     p.cam.mouseX=p.mouseX-p.width/2;
+    //     p.cam.mouseY=p.mouseY-p.height/2;
+    //     super.update();
+    //     p.cam.mouseX=tx;
+    //     p.cam.mouseY=ty;
+    //   }else super.update();
+    // }
+    // @Override
+    // public void mousePressed(int button) {
+    //   if(Settings.data[0]==0) {
+    //     float tx=p.cam.mouseX,
+    //       ty=p.cam.mouseX;
+    //     p.cam.mouseX=p.mouseX-p.width/2;
+    //     p.cam.mouseY=p.mouseY-p.height/2;
+    //     super.mousePressed(button);
+    //     p.cam.mouseX=tx;
+    //     p.cam.mouseY=ty;
+    //   }else super.mousePressed(button);
+    // }
+    // @Override
+    // public void mouseReleased(int button) {
+    //   if(Settings.data[0]==0) {
+    //     float tx=p.cam.mouseX,
+    //       ty=p.cam.mouseX;
+    //     p.cam.mouseX=p.mouseX-p.width/2;
+    //     p.cam.mouseY=p.mouseY-p.height/2;
+    //     super.mouseReleased(button);
+    //     p.cam.mouseX=tx;
+    //     p.cam.mouseY=ty;
+    //   }else super.update();
+    //   super.mouseReleased(button);
+    // }
+    // };
+    // add.add(componentCenter);
+    //---
     toolBar=new ToolBar(p,tabs,-640,-160);
     tabs.toolBar=toolBar;
+    // componentCenter.
     add.add(toolBar);
+    //---
     lsHelper=new LoadAndSave(p,tabs,-640,160);
     tabs.lsHelper=lsHelper;
+    // componentCenter.
     add.add(lsHelper);
+    //---
     scoreboard=new Scoreboard(p,tabs,0,-360);
     tabs.scoreboard=scoreboard;
+    // componentCenter.
     add.add(scoreboard);
+    //---
     tabs.setSelect(tab);
     tabs.refresh();
     final float[][] rules=new float[][] {
@@ -82,7 +139,7 @@ public class ParticleAutomata extends EntityCenter<Entity>{
   private ArrayList<MetaInfo> createMetaInfo(float... in) {
     ArrayList<MetaInfo> out=new ArrayList<MetaInfo>(in.length);
     for(int i=0;i<in.length;i++) {
-      MetaInfo info=new MetaInfo(in[i]);
+      MetaInfo info=new MetaInfo(in[i]*Cell.size/3);
       info.max*=0.8f;
       out.add(info);
     }

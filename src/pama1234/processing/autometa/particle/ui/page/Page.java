@@ -1,6 +1,6 @@
 package pama1234.processing.autometa.particle.ui.page;
 
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 
 public abstract class Page<T extends Entity>extends Entity{

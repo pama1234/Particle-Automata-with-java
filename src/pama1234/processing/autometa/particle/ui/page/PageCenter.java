@@ -3,21 +3,17 @@ package pama1234.processing.autometa.particle.ui.page;
 import java.util.LinkedList;
 
 import pama1234.math.Tools;
-import pama1234.math.physics.PathPoint;
 import pama1234.math.vec.Vec2f;
-import pama1234.processing.Entity;
 import pama1234.processing.autometa.particle.ui.UITools;
+import pama1234.processing.autometa.particle.ui.component.TextBoard;
 import pama1234.processing.util.app.UtilApp;
 import processing.core.PConstants;
-import processing.core.PGraphics;
 
-public class PageCenter extends Entity{
+public class PageCenter extends TextBoard{
   public final LinkedList<Page<?>> list=new LinkedList<Page<?>>();
   public Page<?> main,select;
-  public final PathPoint point;
-  public int w,h,textSize=32,index;
+  public int index;
   public float x,y;
-  public PGraphics layer;
   public void setSelect(Page<?> select) {
     if(this.select!=null) this.select.hide();
     this.select=select;
@@ -25,10 +21,10 @@ public class PageCenter extends Entity{
     select.show();
   }
   public PageCenter(UtilApp p,Page<?> main,float x,float y) {
-    super(p);
+    super(p,0,0,1,1);
     this.x=x;
     this.y=y;
-    point=new PathPoint(0,0);
+    textAlignX=PConstants.CENTER;
     this.main=main;
     list.add(main);
     setSelect(main);
@@ -39,12 +35,7 @@ public class PageCenter extends Entity{
   }
   public void refresh() {
     if(layer==null) layer=p.createGraphics(1,1);
-    layer.beginDraw();
-    layer.textFont(p.font);
-    layer.textAlign(PConstants.CENTER,PConstants.TOP);
-    layer.textSize(textSize);
-    layer.textLeading(textSize);
-    layer.endDraw();
+    initLayer();
     int tw=w;
     w=1;
     for(Page<?> tab:list) {
@@ -55,13 +46,7 @@ public class PageCenter extends Entity{
     h=(int)(textSize*(list.size()+0.25f)+layer.textDescent());
     if(tw!=w||th!=h) {
       layer=p.createGraphics(w,h);
-      layer.beginDraw();
-      layer.textFont(p.font);
-      layer.textAlign(PConstants.CENTER,PConstants.TOP);
-      layer.textSize(textSize);
-      layer.textLeading(textSize);
-      layer.noStroke();
-      layer.endDraw();
+      initLayer();
     }
     drawLayer();
   }
@@ -77,14 +62,14 @@ public class PageCenter extends Entity{
   public void drawLayer() {
     layer.beginDraw();
     layer.background(0xffF66104);
-    UITools.rectFrame(layer,0,0,layer.width,layer.height);
+    UITools.border(layer,0,0,layer.width,layer.height);
     float ty=0;
     final int ts_d2=layer.width/2;
     for(Page<?> i:list) {
       final float tby=ty+layer.textDescent()-1;
       layer.fill(i==select?0xff6FEDFB:0xffDDF4C4);
       layer.rect(0,tby,w,textSize);
-      UITools.rectFrame(layer,0,tby,w,textSize);
+      UITools.border(layer,0,tby,w,textSize);
       layer.fill(0);
       layer.text(i.name,ts_d2,ty);
       ty+=textSize;

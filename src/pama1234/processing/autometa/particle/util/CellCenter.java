@@ -2,7 +2,7 @@ package pama1234.processing.autometa.particle.util;
 
 import java.nio.ByteBuffer;
 
-import com.hamoid.VideoExport;
+// import com.hamoid.VideoExport;
 
 import pama1234.nio.ByteData;
 import pama1234.processing.util.app.UtilApp;
@@ -20,9 +20,9 @@ public class CellCenter extends EntityCenter<Cell> implements ByteData{
   public static final int x1=-boxR,y1=-boxR,x2=boxR,y2=boxR;
   public static final int w=x2-x1,h=y2-y1;
   public PGraphics layer;
-  public static final boolean videoExport=false;
-  VideoExport temp;
-  PGraphics tg;
+  // public static final boolean videoExport=false;
+  // VideoExport temp;
+  // PGraphics tg;
   @SuppressWarnings("unused")
   public CellCenter(final UtilApp p,final MetaCellCenter parent) {
     super(p);
@@ -33,12 +33,12 @@ public class CellCenter extends EntityCenter<Cell> implements ByteData{
     layer.beginDraw();
     layer.noStroke();
     layer.endDraw();
-    if(videoExport) {
-      tg=p.createGraphics(layer.width,layer.height);
-      temp=new VideoExport(p);
-      temp.setGraphics(tg);
-      temp.startMovie();
-    }
+    // if(videoExport) {
+    //   tg=p.createGraphics(layer.width,layer.height);
+    //   temp=new VideoExport(p);
+    //   temp.setGraphics(tg);
+    //   temp.startMovie();
+    // }
   }
   @Override
   public void update() {
@@ -81,7 +81,11 @@ public class CellCenter extends EntityCenter<Cell> implements ByteData{
         if(scoreG!=0) i.score.vel+=t.score.pos*scoreG;
       }
     }
+    //---
     fade();
+    layer.beginDraw();
+    super.display();
+    layer.endDraw();
     box();
   }
   private void box() {
@@ -101,20 +105,17 @@ public class CellCenter extends EntityCenter<Cell> implements ByteData{
   }
   @Override
   public void display() {
-    layer.beginDraw();
-    super.display();
-    layer.endDraw();
-    if(videoExport) {
-      tg.beginDraw();
-      tg.background(0);
-      tg.image(layer,0,0);
-      tg.endDraw();
-      temp.saveFrame();
-      p.image(tg,x1-layer_cell_size,y1-layer_cell_size);
-    }else {
-      if(boxed) p.image(layer,x1-layer_cell_size,y1-layer_cell_size);
-      else p.image(layer,x1-w/4f,y1-h/4f);
-    }
+    // if(videoExport) {
+    //   tg.beginDraw();
+    //   tg.background(0);
+    //   tg.image(layer,0,0);
+    //   tg.endDraw();
+    //   temp.saveFrame();
+    //   p.image(tg,x1-layer_cell_size,y1-layer_cell_size);
+    // }else {
+    if(boxed) p.image(layer,x1-layer_cell_size,y1-layer_cell_size);
+    else p.image(layer,x1-w/4f,y1-h/4f);
+    // }
   }
   private void fade() {
     layer.loadPixels();
@@ -130,7 +131,7 @@ public class CellCenter extends EntityCenter<Cell> implements ByteData{
     layer.updatePixels();
   }
   public void dispose() {
-    if(videoExport) temp.endMovie();
+    // if(videoExport) temp.endMovie();
     super.dispose();
   }
   @Override

@@ -7,7 +7,7 @@ import pama1234.math.Tools;
 import pama1234.math.physics.PathPoint;
 import pama1234.math.vec.Vec2f;
 import pama1234.nio.ByteData;
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 import processing.core.PApplet;
 import processing.core.PConstants;

@@ -2,7 +2,7 @@ package pama1234.processing.util.center;
 
 import java.util.LinkedList;
 
-import pama1234.processing.Life;
+import pama1234.processing.util.Life;
 import pama1234.processing.util.app.UtilApp;
 
 public class LifeCenter<T extends Life>extends Life{

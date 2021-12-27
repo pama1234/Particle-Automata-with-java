@@ -7,14 +7,13 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 
 import pama1234.math.Tools;
-import pama1234.math.physics.PathPoint;
 import pama1234.math.vec.Vec2f;
 import pama1234.processing.autometa.particle.ui.UITools;
 import pama1234.processing.util.app.UtilApp;
 import processing.core.PConstants;
 
-public class Info extends Component implements ClipboardOwner{
-  public static int text_size=16;
+public class Info extends TextBoard implements ClipboardOwner{
+  public static int TEXT_SIZE=16;
   String[] data;
   int state;
   float cw;
@@ -51,45 +50,36 @@ public class Info extends Component implements ClipboardOwner{
         "这里的粒子元胞自动机，如果非得分类一下，则可以分为格式塔人工生命流派，别问我为什么，我也不知道，你当成我瞎猜的即可"});
   }
   public Info(UtilApp p,float x,float y,String[] data) {
-    super(p,x,y,text_size*20,text_size*40);
+    super(p,x,y,TEXT_SIZE*20,TEXT_SIZE*40,TEXT_SIZE);
     this.data=data;
-    layer.beginDraw();
-    layer.textFont(p.font);
-    layer.textSize(text_size);
-    layer.textLeading(text_size);
-    layer.textAlign(PConstants.LEFT,PConstants.TOP);
-    layer.noStroke();
-    layer.endDraw();
+    initLayer();
     refresh();
-    point=new PathPoint(0,0,x,y);
   }
   @Override
   public void drawLayer() {
     layer.beginDraw();
-    layer.textSize(text_size);
-    layer.textLeading(text_size);
-    layer.textAlign(PConstants.LEFT,PConstants.TOP);
     layer.background(0xff4D3C94);
-    UITools.rectFrame(layer,0,0,layer.width,layer.height);
+    UITools.border(layer,0,0,layer.width,layer.height);
     layer.fill(0xff006799);
-    layer.rect(0,0,data.length*text_size,text_size);
+    layer.rect(0,0,data.length*TEXT_SIZE,TEXT_SIZE);
     layer.fill(0xff2A00FF);
-    layer.rect(state*text_size,0,text_size,text_size);
+    layer.rect(state*TEXT_SIZE,0,TEXT_SIZE,TEXT_SIZE);
     layer.fill(255);
     float ty=-layer.textDescent()/2;
     for(int i=0;i<data.length;i++) {
-      layer.text(i,i*text_size,ty);
-      UITools.rectFrame(layer,i*text_size,0,text_size,text_size);
+      layer.text(i,i*TEXT_SIZE,ty);
+      UITools.border(layer,i*TEXT_SIZE,0,TEXT_SIZE,TEXT_SIZE);
     }
-    layer.text(data[state],text_size/2,text_size*2,layer.width-text_size/2,layer.height);
+    layer.text(data[state],TEXT_SIZE/2,TEXT_SIZE*2,layer.width-TEXT_SIZE/2,layer.height);
     layer.fill(0xffFB612E);
-    layer.rect(layer.width-(cw=layer.textWidth("Ctrl-C")),0,cw,text_size);
+    layer.rect(layer.width-(cw=layer.textWidth("Ctrl-C")),0,cw,TEXT_SIZE);
     layer.fill(255);
     layer.text("Ctrl-C",layer.width-cw,ty);
-    UITools.rectFrame(layer,layer.width-cw,0,cw,text_size);
+    UITools.border(layer,layer.width-cw,0,cw,TEXT_SIZE);
     layer.endDraw();
   }
   public void refresh() {
+    initLayer();
     drawLayer();
   }
   @Override
@@ -97,11 +87,6 @@ public class Info extends Component implements ClipboardOwner{
   @Override
   public void update() {
     point.update();
-  }
-  @Override
-  public void display() {
-    final Vec2f pos=point.pos;
-    p.image(layer,pos.x,pos.y);
   }
   @Override
   public void pause() {}
@@ -116,13 +101,13 @@ public class Info extends Component implements ClipboardOwner{
       if(Tools.inBox(
         p.cam.mouseX,p.cam.mouseY,
         pos.x,pos.y,
-        data.length*text_size-1,text_size)) {
-        state=(int)Math.floor((Math.ceil(p.cam.mouseX)-pos.x)/text_size);
+        data.length*TEXT_SIZE-1,TEXT_SIZE)) {
+        state=(int)Math.floor((Math.ceil(p.cam.mouseX)-pos.x)/TEXT_SIZE);
         refresh();
       }else if(Tools.inBox(
         p.cam.mouseX,p.cam.mouseY,
         pos.x+layer.width-cw,pos.y,
-        cw,text_size)) {
+        cw,TEXT_SIZE)) {
           Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(data[state]),this);
         }
     }

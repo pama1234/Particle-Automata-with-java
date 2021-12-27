@@ -1,13 +1,13 @@
 package pama1234.processing.autometa.particle.ui.page.content;
 
 import pama1234.math.physics.PathPoint;
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class Welcome extends Entity{
-  private static final String[] slogan= {"————魔道中人专用","————玩虫子！","————加我微信！lizerun2017","————加我QQ！1507585905"};
+  private static final String[] slogan= {"————魔道中人专用","————玩虫子！","————加我微信！lizerun2017","————加我QQ！1507585905","————粒子系统！"};
   private static final String title="炼蛊模拟器";
   public final PathPoint point;
   public PGraphics layer;

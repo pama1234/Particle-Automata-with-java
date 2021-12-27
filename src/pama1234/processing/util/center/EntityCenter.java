@@ -2,7 +2,7 @@ package pama1234.processing.util.center;
 
 import java.util.LinkedList;
 
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 
 public class EntityCenter<T extends Entity>extends Entity{

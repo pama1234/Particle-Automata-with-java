@@ -17,7 +17,7 @@ public abstract class TextBoard extends Component{
     this.w=w;
     this.h=h;
   }
-  public void layerInit() {
+  public void initLayer() {
     layer.beginDraw();
     layer.textFont(p.font);
     layer.textAlign(textAlignX,textAlignY);

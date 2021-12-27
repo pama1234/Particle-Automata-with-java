@@ -9,7 +9,7 @@ import pama1234.math.physics.MassPoint;
 import pama1234.math.physics.MassVar;
 import pama1234.nio.ByteData;
 import pama1234.nio.ByteDataFactory;
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 
 public class Cell extends Entity implements ByteData{

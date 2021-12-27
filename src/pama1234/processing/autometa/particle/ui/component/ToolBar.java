@@ -3,7 +3,6 @@ package pama1234.processing.autometa.particle.ui.component;
 import java.util.LinkedList;
 
 import pama1234.math.Tools;
-import pama1234.math.physics.PathPoint;
 import pama1234.math.vec.Vec2f;
 import pama1234.processing.autometa.particle.ui.UITools;
 import pama1234.processing.autometa.particle.util.Cell;
@@ -28,18 +27,18 @@ public class ToolBar extends TextBoard{
   public int originalId;
   public ToolBar(UtilApp p,TabCenter parent,float x,float y) {
     super(p,x,y,1,1);
-    layerInit();
+    //    layerInit();
     this.parent=parent;
     names=new String[][] {{"暂无操作",},{"移动粒子","批量移动"},};
     state=new int[2];
-    point=new PathPoint(0,0,x,y);
+    state[1]=1;
     cellCenter=parent.cellCenter;
     metaCenter=parent.metaCenter;
   }
   @Override
   public void create() {}
   public void refresh() {
-    layerInit();
+    initLayer();
     int tw=w;
     w=1;
     final String[] tsa=names[parent.index];
@@ -51,14 +50,14 @@ public class ToolBar extends TextBoard{
     h=(int)(textSize*(tsa.length+0.25f)+layer.textDescent());
     if(tw!=w||th!=h) {
       layer=p.createGraphics(w,h);
-      layerInit();
+      initLayer();
     }
     drawLayer();
   }
   public void drawLayer() {
     layer.beginDraw();
     layer.background(0xffF66104);
-    UITools.rectFrame(layer,0,0,layer.width,layer.height);
+    UITools.border(layer,0,0,layer.width,layer.height);
     float ty=0;
     final int ts_d2=textSize/2;
     final String[] tsa=names[parent.index];
@@ -67,7 +66,7 @@ public class ToolBar extends TextBoard{
       final float tby=ty+layer.textDescent()-1;
       layer.fill(i==state[parent.index]?0xff6FEDFB:0xffDDF4C4);
       layer.rect(textSize/2,tby,w-textSize/2,textSize);
-      UITools.rectFrame(layer,textSize/2,tby,w-textSize/2,textSize);
+      UITools.border(layer,textSize/2,tby,w-textSize/2,textSize);
       layer.fill(0);
       layer.text(ts,ts_d2,ty);
       ty+=textSize;

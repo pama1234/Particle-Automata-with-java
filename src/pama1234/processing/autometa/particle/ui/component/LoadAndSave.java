@@ -19,7 +19,6 @@ public class LoadAndSave extends TextBoard{
   public int cooling,coolingTime=10;
   public LoadAndSave(UtilApp p,TabCenter parent,float x,float y) {
     super(p,x,y,1,1);
-    layerInit();
     this.parent=parent;
     names=new String[][] {{"暂无操作",},{"","存档","读档","另存为","打开",}};
     state=new int[2];
@@ -29,7 +28,7 @@ public class LoadAndSave extends TextBoard{
   @Override
   public void create() {}
   public void refresh() {
-    layerInit();
+    initLayer();
     int tw=w;
     w=1;
     final String[] tsa=names[parent.index];
@@ -40,14 +39,15 @@ public class LoadAndSave extends TextBoard{
     int th=h;
     h=(int)(textSize*(tsa.length+0.25f)+layer.textDescent());
     if(tw!=w||th!=h) {
-      layerInit();
+      layer=p.createGraphics(w,h);
+      initLayer();
     }
     drawLayer();
   }
   public void drawLayer() {
     layer.beginDraw();
     layer.background(0xffF66104);
-    UITools.rectFrame(layer,0,0,layer.width,layer.height);
+    UITools.border(layer,0,0,layer.width,layer.height);
     float ty=0;
     final int ts_d2=textSize/2;
     final String[] tsa=names[parent.index];
@@ -56,7 +56,7 @@ public class LoadAndSave extends TextBoard{
       final float tby=ty+layer.textDescent()-1;
       layer.fill(i==state[parent.index]?0xff6FEDFB:0xffDDF4C4);
       layer.rect(textSize/2,tby,w-textSize/2,textSize);
-      UITools.rectFrame(layer,textSize/2,tby,w-textSize/2,textSize);
+      UITools.border(layer,textSize/2,tby,w-textSize/2,textSize);
       layer.fill(0);
       layer.text(ts,ts_d2,ty);
       ty+=textSize;
@@ -114,10 +114,6 @@ public class LoadAndSave extends TextBoard{
         }
       }
     }
-  }
-  @Override
-  public void display() {
-    p.image(layer,point.pos.x,point.pos.y);
   }
   @Override
   public void pause() {}

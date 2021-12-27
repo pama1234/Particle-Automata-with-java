@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import pama1234.math.vec.Vec2i;
-import pama1234.processing.Entity;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.center.EntityCenter;
 import pama1234.processing.util.element.Cam;
 import processing.awt.PSurfaceAWT.SmoothCanvas;

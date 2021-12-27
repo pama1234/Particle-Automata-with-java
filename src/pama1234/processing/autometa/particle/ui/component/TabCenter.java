@@ -35,7 +35,7 @@ public class TabCenter extends TextBoard{
     select.create();
   }
   public void refresh() {
-    layerInit();
+    initLayer();
     int tw=w;
     w=1;
     for(Tab<?> tab:list) {
@@ -46,7 +46,7 @@ public class TabCenter extends TextBoard{
     h=(int)(textSize*(list.size()+0.25f)+layer.textDescent());
     if(tw!=w||th!=h) {
       layer=p.createGraphics(w,h);
-      layerInit();
+      initLayer();
     }
     drawLayer();
   }
@@ -58,17 +58,17 @@ public class TabCenter extends TextBoard{
   public void drawLayer() {
     layer.beginDraw();
     layer.background(0xffF66104);
-    UITools.rectFrame(layer,0,0,layer.width,layer.height);
+    UITools.border(layer,0,0,layer.width,layer.height);
     float ty=0;
     final int ts_d2=textSize/2;
     for(Tab<?> i:list) {
       layer.fill(i.update?0xff00ff00:0xffff0000);
       final float tby=ty+layer.textDescent()-1;
       layer.rect(0,tby,textSize/2,textSize);
-      UITools.rectFrame(layer,0,tby,textSize/2,textSize);
+      UITools.border(layer,0,tby,textSize/2,textSize);
       layer.fill(i==select?0xff6FEDFB:0xffDDF4C4);
       layer.rect(textSize/2,tby,w-textSize/2,textSize);
-      UITools.rectFrame(layer,textSize/2,tby,w-textSize/2,textSize);
+      UITools.border(layer,textSize/2,tby,w-textSize/2,textSize);
       layer.fill(0);
       layer.text(i.name,ts_d2,ty);
       ty+=textSize;
