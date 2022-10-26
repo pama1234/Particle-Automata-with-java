@@ -13,6 +13,10 @@ public class PathVar implements ByteData{
   public PathVar(float in) {
     pos=des=in;
   }
+  public PathVar(float in,float fIn) {
+    pos=des=in;
+    f=fIn;
+  }
   public void update() {
     pos+=(des-pos)*f;
   }

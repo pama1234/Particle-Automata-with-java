@@ -8,7 +8,7 @@ import pama1234.nio.ByteData;
 
 public class Vec2f extends Vector2f implements ByteData{
   private static final long serialVersionUID=8654339263948261774L;
-  public static final int buffer_size=ByteData.FLOAT_SIZE*2;
+  public static final int buffer_size=FLOAT_SIZE*2;
   public Vec2f(int i,int j) {
     x=i;
     y=j;
@@ -57,12 +57,12 @@ public class Vec2f extends Vector2f implements ByteData{
   @Override
   public void fromData(ByteBuffer in,int offset,int size) {
     x=in.getFloat(offset);
-    y=in.getFloat(offset+=ByteData.FLOAT_SIZE);
+    y=in.getFloat(offset+=FLOAT_SIZE);
   }
   @Override
   public ByteBuffer toData(ByteBuffer in,int offset) {
     in.putFloat(offset,x);
-    in.putFloat(offset+=ByteData.FLOAT_SIZE,y);
+    in.putFloat(offset+=FLOAT_SIZE,y);
     return in;
   }
   @Override

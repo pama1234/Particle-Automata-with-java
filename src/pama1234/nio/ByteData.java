@@ -18,6 +18,7 @@ public interface ByteData extends Data<ByteBuffer>{
   //---
   public static final int FLOAT_SIZE=4;
   public static final int INT_SIZE=4;
+  public static final int CHAR_SIZE=2;
   public static final int BOOLEAN_SIZE=1;
   public static final byte FALSE=0,TRUE=1;
   public static boolean toBoolean(byte in) {

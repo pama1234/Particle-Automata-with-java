@@ -6,7 +6,7 @@ import pama1234.math.vec.Vec2f;
 import pama1234.nio.ByteData;
 
 public class MassPoint implements ByteData{
-  public static final int buffer_size=Vec2f.buffer_size*2+ByteData.FLOAT_SIZE;
+  public static final int buffer_size=Vec2f.buffer_size*2+FLOAT_SIZE;
   public Vec2f pos,vel;
   public float f;
   {
@@ -77,13 +77,13 @@ public class MassPoint implements ByteData{
   @Override
   public void fromData(ByteBuffer in,int offset,int size) {
     f=in.getFloat(offset);
-    pos.fromData(in,offset+=ByteData.FLOAT_SIZE,offset+=pos.bufferSize());
+    pos.fromData(in,offset+=FLOAT_SIZE,offset+=pos.bufferSize());
     vel.fromData(in,offset,offset+=vel.bufferSize());
   }
   @Override
   public ByteBuffer toData(ByteBuffer in,int offset) {
     in.putFloat(offset,f);
-    pos.toData(in,offset+=ByteData.FLOAT_SIZE);
+    pos.toData(in,offset+=FLOAT_SIZE);
     vel.toData(in,offset+=pos.bufferSize());
     return in;
   }

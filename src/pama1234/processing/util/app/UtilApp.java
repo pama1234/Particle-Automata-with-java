@@ -222,8 +222,10 @@ public class UtilApp extends PApplet{
   @Override
   public void mouseWheel(MouseEvent e) {
     super.mouseWheel(e);
+    mouseWheel(e.getCount());
     center.mouseWheel(e.getCount());
   }
+  public void mouseWheel(int count) {}
   @Override
   public void keyPressed(KeyEvent event) {
     switch(keyCode) {

@@ -51,8 +51,4 @@ public class PathPoint implements ByteData{
   public int bufferSize() {
     return pos.bufferSize()+des.bufferSize()+ByteData.FLOAT_SIZE;
   }
-  public void set(float x,float y) {
-    pos.set(x,y);
-    des.set(x,y);
-  }
 }

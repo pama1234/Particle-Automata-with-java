@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
+import pama1234.processing.util.listener.EntityListener;
 
-public class EntityCenter<T extends Entity>extends Entity{
+public class EntityCenter<T extends EntityListener>extends Entity{
   public final LinkedList<T> list=new LinkedList<T>(),
     add=new LinkedList<T>(),
     remove=new LinkedList<T>();

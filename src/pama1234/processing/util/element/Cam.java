@@ -10,7 +10,7 @@ import processing.core.PMatrix2D;
 public class Cam extends Entity{
   public PathPoint point;
   public PathVar scale;
-  public float mouseX,mouseY,pmouseX,pmouseY,smouseX,smouseY,deltaX,deltaY;
+  public float mouseX,mouseY,pmouseX,pmouseY,smouseX,smouseY,deltaX,deltaY,screenWidth,screenHeight;
   public boolean drag=true,active;
   public int dragButton=PConstants.RIGHT;
   public PMatrix2D matrix;
@@ -43,6 +43,9 @@ public class Cam extends Entity{
     mouseY=transY(p.mouseY);
     deltaX=mouseX-pmouseX;
     deltaY=mouseY-pmouseY;
+    //---
+    screenWidth=p.width/scale.pos;
+    screenHeight=p.height/scale.pos;
   }
   @Override
   public void display() {
@@ -84,6 +87,7 @@ public class Cam extends Entity{
   public void mouseDragged() {}
   @Override
   public void mouseWheel(final int c) {
+    if(p.ctrl||p.alt||p.shift) return;
     scale.des+=c*step;
     if(scale.des<min) scale.des=min;
     if(scale.des>max) scale.des=max;

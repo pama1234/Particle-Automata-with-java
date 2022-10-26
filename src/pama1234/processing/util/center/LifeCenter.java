@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 import pama1234.processing.util.Life;
 import pama1234.processing.util.app.UtilApp;
+import pama1234.processing.util.listener.LifecycleListener;
 
-public class LifeCenter<T extends Life>extends Life{
+public class LifeCenter<T extends LifecycleListener>extends Life{
   public LinkedList<T> list,add,remove;
   public LifeCenter(UtilApp p) {
     super(p);
