@@ -27,6 +27,9 @@ public class Tools{
   public static boolean inBox(int a,int b,int x,int y,int w,int h) {
     return a>x&&a<x+w&&b>y&&b<y+h;
   }
+  public static boolean inRect(float a,float b,float x,float y1,float x2,float y2) {
+    return a>x&&a<x2&&b>y1&&b<y2;
+  }
   public static boolean intersects(float x1,float y1,float w1,float h1,float x2,float y2,float w2,float h2) {
     if(w2<=0||h2<=0||w1<=0||h1<=0) return false;
     w2+=x2;
