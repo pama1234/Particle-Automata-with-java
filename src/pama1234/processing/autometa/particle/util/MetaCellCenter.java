@@ -17,6 +17,8 @@ public class MetaCellCenter extends EntityCenter<MetaCell>{
   public PGraphics[] layers;
   public Vec2i select=new Vec2i();
   public int refresh=2;
+  public MetaCell[] cells;
+  public MetaInfo[][] matrix;
   public MetaCellCenter(UtilApp p,int x,int y,int w,int h) {
     super(p);
     this.x=x;

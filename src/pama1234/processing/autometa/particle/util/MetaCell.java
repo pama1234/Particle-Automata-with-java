@@ -33,6 +33,14 @@ public class MetaCell extends Entity implements ByteData{
     this.id=parent.createId();
     this.list=list;
   }
+  public MetaCell(String string,int color) {
+    super(null);
+    this.point=new PathPoint(0,0);
+    this.parent=null;
+    this.name=string;
+    this.id=0;
+    this.list=null;
+  }
   public void createIdEvent(final int in) {}
   public void refresh(final int in) {
     final PGraphics l=parent.layers[0];

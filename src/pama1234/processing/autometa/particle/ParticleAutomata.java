@@ -1,11 +1,11 @@
 package pama1234.processing.autometa.particle;
 
-import pama1234.processing.Entity;
 import pama1234.processing.autometa.particle.util.Cell;
 import pama1234.processing.autometa.particle.util.CellCenter;
 import pama1234.processing.autometa.particle.util.MetaCell;
 import pama1234.processing.autometa.particle.util.MetaCellCenter;
 import pama1234.processing.autometa.particle.util.MetaInfo;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 import pama1234.processing.util.center.EntityCenter;
 import processing.core.PConstants;
@@ -18,7 +18,8 @@ public class ParticleAutomata extends EntityCenter<Entity>{
     super(p);
     MetaCell[] array;
     metaCenter=new MetaCellCenter(p,0,0,0,0);
-    add.add(cellCenter=new CellCenter(p,metaCenter));
+    cellCenter=new CellCenter(p,metaCenter);
+    add.add((Entity)cellCenter);
     final float[][] rules=new float[][] {
       {0,0,0,1,-1},
       {-1,0,0,0,1},

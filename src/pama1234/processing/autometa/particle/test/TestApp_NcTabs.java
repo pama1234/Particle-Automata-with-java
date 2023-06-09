@@ -2,7 +2,6 @@ package pama1234.processing.autometa.particle.test;
 
 import java.util.ArrayList;
 
-import pama1234.processing.Entity;
 import pama1234.processing.autometa.particle.ui.Tab;
 import pama1234.processing.autometa.particle.ui.component.Info;
 import pama1234.processing.autometa.particle.ui.component.TabCenter;
@@ -12,6 +11,7 @@ import pama1234.processing.autometa.particle.util.CellCenter;
 import pama1234.processing.autometa.particle.util.MetaCell;
 import pama1234.processing.autometa.particle.util.MetaCellCenter;
 import pama1234.processing.autometa.particle.util.MetaInfo;
+import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 
 public class TestApp_NcTabs extends UtilApp{
