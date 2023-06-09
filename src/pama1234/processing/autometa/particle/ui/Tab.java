@@ -1,6 +1,5 @@
 package pama1234.processing.autometa.particle.ui;
 
-import pama1234.processing.autometa.particle.util.MetaCellCenter;
 import pama1234.processing.util.Entity;
 import pama1234.processing.util.app.UtilApp;
 
@@ -12,9 +11,6 @@ public class Tab<T extends Entity>extends Entity{
     super(p);
     this.name=name;
     this.e=e;
-  }
-  public Tab(UtilApp p,String name2,MetaCellCenter metaCellCenter) {
-    super(p);
   }
   @Override
   public void create() {
