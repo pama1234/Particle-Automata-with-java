@@ -10,8 +10,8 @@ import pama1234.processing.util.app.UtilApp;
 
 public class MainApp extends UtilApp{
   public static final int cam_box_r=720;
-  Info info;
-  PageCenter pageCenter;
+  public Info info;
+  public PageCenter pageCenter;
   @Override
   public void settings() {
     super.settings();
