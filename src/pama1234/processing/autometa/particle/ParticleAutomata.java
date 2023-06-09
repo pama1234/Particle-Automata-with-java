@@ -17,7 +17,7 @@ public class ParticleAutomata extends EntityCenter<Entity>{
   public ParticleAutomata(UtilApp p) {
     super(p);
     MetaCell[] array;
-    metaCenter=new MetaCellCenter();
+    metaCenter=new MetaCellCenter(p,0,0,0,0);
     add.add(cellCenter=new CellCenter(p,metaCenter));
     final float[][] rules=new float[][] {
       {0,0,0,1,-1},
