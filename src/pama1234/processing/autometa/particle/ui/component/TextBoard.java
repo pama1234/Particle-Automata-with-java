@@ -17,6 +17,7 @@ public abstract class TextBoard extends Component{
     this.w=w;
     this.h=h;
   }
+  // @Override
   public void initLayer() {
     layer.beginDraw();
     layer.textFont(p.font);
