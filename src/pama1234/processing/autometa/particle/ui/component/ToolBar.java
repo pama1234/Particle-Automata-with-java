@@ -158,10 +158,12 @@ public class ToolBar extends TextBoard{
       final float tx=select.point.pos.x,
         ty=select.point.pos.y,
         ts_m2=Cell.size*2,
-        ts_d2=Cell.size/2,
-        ts_d2m3=ts_d2*3;
+        ts_d2=Cell.size/2;
+      // ts_d2m3=ts_d2*3;
       final boolean flag=parent.index==1&&state[parent.index]==1;
-      final float ts_m2_2=flag?ts_m2+dist:ts_m2;
+      final float ts_m2_2=flag?ts_m2+dist:ts_m2,
+        ts_d2m3=flag?ts_d2*2+dist:ts_d2*3,
+        ts_d2m4=flag?ts_d2*2:ts_d2;
       p.ellipse(tx,ty,ts_m2,ts_m2);
       if(flag) {
         p.ellipse(tx,ty,dist*2,dist*2);
@@ -171,20 +173,20 @@ public class ToolBar extends TextBoard{
         }
       }
       if(keys[up]) {
-        p.line(tx,ty-ts_m2_2,tx-ts_d2,ty-ts_d2m3);
-        p.line(tx,ty-ts_m2_2,tx+ts_d2,ty-ts_d2m3);
+        p.line(tx,ty-ts_m2_2,tx-ts_d2m4,ty-ts_d2m3);
+        p.line(tx,ty-ts_m2_2,tx+ts_d2m4,ty-ts_d2m3);
       }
       if(keys[down]) {
-        p.line(tx,ty+ts_m2_2,tx-ts_d2,ty+ts_d2m3);
-        p.line(tx,ty+ts_m2_2,tx+ts_d2,ty+ts_d2m3);
+        p.line(tx,ty+ts_m2_2,tx-ts_d2m4,ty+ts_d2m3);
+        p.line(tx,ty+ts_m2_2,tx+ts_d2m4,ty+ts_d2m3);
       }
       if(keys[left]) {
-        p.line(tx-ts_m2_2,ty,tx-ts_d2m3,ty-ts_d2);
-        p.line(tx-ts_m2_2,ty,tx-ts_d2m3,ty+ts_d2);
+        p.line(tx-ts_m2_2,ty,tx-ts_d2m3,ty-ts_d2m4);
+        p.line(tx-ts_m2_2,ty,tx-ts_d2m3,ty+ts_d2m4);
       }
       if(keys[right]) {
-        p.line(tx+ts_m2_2,ty,tx+ts_d2m3,ty-ts_d2);
-        p.line(tx+ts_m2_2,ty,tx+ts_d2m3,ty+ts_d2);
+        p.line(tx+ts_m2_2,ty,tx+ts_d2m3,ty-ts_d2m4);
+        p.line(tx+ts_m2_2,ty,tx+ts_d2m3,ty+ts_d2m4);
       }
       p.noStroke();
     }
